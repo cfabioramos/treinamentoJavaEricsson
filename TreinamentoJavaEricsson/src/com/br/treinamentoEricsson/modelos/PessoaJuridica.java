@@ -1,6 +1,8 @@
 package com.br.treinamentoEricsson.modelos;
 
-public class PessoaJuridica extends Pessoa {
+import com.br.treinamentoEricsson.auditoria.Auditavel;
+
+public class PessoaJuridica extends Pessoa implements Auditavel{
 
 	private String cnpj;
 	
@@ -21,16 +23,16 @@ public class PessoaJuridica extends Pessoa {
 	public String retornaIdentificador() {
 		return this.cnpj;
 	}
-
-	@Override
-	public void adicionarConta(ContaCorrente conta) {
-		//comportamento específico para contas PJ
-		super.contas.add(conta);
-	}
 	
 	@Override
 	protected void notificarAlteracao() {
 		System.out.println("Faz a notificação da pessoa juridica...");
+	}
+
+	@Override
+	public void adicionarConta(ContaCorrente conta) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

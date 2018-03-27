@@ -1,6 +1,8 @@
 package com.br.treinamentoEricsson.modelos;
 
-public class ContaCorrente extends Object {
+import com.br.treinamentoEricsson.auditoria.Auditavel;
+
+public class ContaCorrente implements Auditavel {
 	
 	private String agencia;
 	private String numero;

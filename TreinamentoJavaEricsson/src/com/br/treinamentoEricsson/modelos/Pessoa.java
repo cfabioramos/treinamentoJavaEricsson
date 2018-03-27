@@ -3,7 +3,7 @@ package com.br.treinamentoEricsson.modelos;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Pessoa {
+public abstract class Pessoa 	{
 
 	private String nome;
 	private String endereco;
@@ -42,7 +42,7 @@ public abstract class Pessoa {
 	
 	public void removerConta (ContaCorrente contaCorrente) {
 		// Valida o saldo;
-		this.notificarAlteracao();
+		notificarAlteracao();
 		//TODO método remove.
 		this.contas.remove(contaCorrente);
 	}
