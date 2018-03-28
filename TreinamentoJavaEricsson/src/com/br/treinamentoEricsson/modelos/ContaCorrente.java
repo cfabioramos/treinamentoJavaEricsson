@@ -1,72 +1,64 @@
 package com.br.treinamentoEricsson.modelos;
 
 import com.br.treinamentoEricsson.auditoria.Auditavel;
+import com.br.treinamentoEricsson.exceptions.SaldoInsuficienteException;
 
 public class ContaCorrente implements Auditavel {
-	
+
 	private String agencia;
 	private String numero;
 	private double valor;
 	private Pessoa cliente;
-	
-	public static final int VALOR_INICIAL = 100;
-	
+
+	public static final double VALOR_INICIAL = 100.0;
+
 	public ContaCorrente(String agencia, String numero, double valor, Pessoa cliente) {
 		super();
 		this.agencia = agencia;
 		this.numero = numero;
 		this.cliente = cliente;
 		cliente.adicionarConta(this);
-		
+
 		if (valor < ContaCorrente.VALOR_INICIAL) {
 			throw new RuntimeException(
-					" Uma conta corrente não pode ser "
-					+ " aberta com um valor menor que R$ " + ContaCorrente.VALOR_INICIAL);
+					"O valor inicial para abertura "
+					+ " de conta não pode ser menor que " 
+							+ ContaCorrente.VALOR_INICIAL);
 		}
-		
+
 		this.valor = valor;
 	}
-	
-	public boolean sacar(double valor) {
-		if (this.temSaldo(valor)) {
-			this.valor = this.valor - valor;
-			return true;
-		}
-		return false;
+
+	public boolean sacar(double valor) throws SaldoInsuficienteException {
+		this.temSaldo(valor);
+		this.valor = this.valor - valor;
+		return true;
 	}
-	
+
 	public void depositar(double valor) {
 		this.valor = this.valor + valor;
 	}
-	
-	public boolean transferir (double valor, ContaCorrente destino) {
-		
-		if (this.temSaldo(valor)) {
-			destino.depositar(valor);
-			
-			this.sacar(valor);
-			
-			return true;
-		}
-		return false;
+
+	public boolean transferir(double valor, ContaCorrente destino) throws SaldoInsuficienteException {
+		this.temSaldo(valor);
+		destino.depositar(valor);
+		this.sacar(valor);
+		return true;
 	}
-	
+
 	public double obterSaldo() {
 		return this.valor;
 	}
-	
-	private boolean temSaldo(double valor) {
-		if (this.valor < valor) {
-			return false;
-		}
-		return true;
+
+	private void temSaldo(double valor) throws SaldoInsuficienteException {
+		if (this.valor < valor)
+			throw new SaldoInsuficienteException(this.valor);
 	}
-	
-	
+
 	public String getAgencia() {
 		return agencia;
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}
