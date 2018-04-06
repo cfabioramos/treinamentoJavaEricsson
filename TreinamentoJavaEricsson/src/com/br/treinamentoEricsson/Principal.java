@@ -1,23 +1,33 @@
 package com.br.treinamentoEricsson;
 
-import com.br.treinamentoEricsson.auditoria.Auditoria;
-import com.br.treinamentoEricsson.exceptions.SaldoInsuficienteException;
-import com.br.treinamentoEricsson.modelos.ContaCorrente;
-import com.br.treinamentoEricsson.modelos.PessoaJuridica;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-public class Principal extends Object {
+import com.br.treinamentoEricsson.controller.LoginController;
+import com.br.treinamentoEricsson.exceptions.LoginException;
+import com.br.treinamentoEricsson.modelos.Gerente;
+
+public class Principal {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		PessoaJuridica pessoaJuridica = new PessoaJuridica("Ericsson LTDA", "Rua Nova, 222", "998997686");
+		Gerente vartuli = new Gerente("Vartuli", "Rua Bela Vista", "12345", 
+				"vartuli@ericsson.com.br", 12.0, "abc");
 		
-		ContaCorrente ccPessoaFisica1 = 
-				new ContaCorrente("2882", "5224", 10000.0, pessoaJuridica);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Login: ");
+		String login = br.readLine();
+		System.out.println("Senha: ");
+		String senha = br.readLine();
 		
+		LoginController controller = new LoginController();
 		try {
-			ccPessoaFisica1.sacar(13599);
-		} catch (SaldoInsuficienteException e) {
+			controller.login(vartuli, login, senha);
+			System.out.println("Usuário autenticado com sucesso.");
+		} catch (LoginException e) {
 			System.out.println(e.getMessage());
 		}
+		
 	}
 }

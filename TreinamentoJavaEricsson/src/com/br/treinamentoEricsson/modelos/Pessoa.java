@@ -3,7 +3,7 @@ package com.br.treinamentoEricsson.modelos;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Pessoa 	{
+public abstract class Pessoa {
 
 	private String nome;
 	private String endereco;
