@@ -13,20 +13,14 @@ public class Gerente extends Funcionario {
 	}
 
 	@Override
-	public void adicionarConta(ContaCorrente conta) {
-		// TODO Auto-generated method stub
-
+	public boolean autenticar(String login, String senha) {
+		return this.getMatricula().equals(login) && this.getSenha().equals(senha);
 	}
 
 	@Override
 	public String retornaIdentificador() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean autenticar(String login, String senha) {
-		return this.getMatricula().equals(login) && this.getSenha().equals(senha);
 	}
 
 }

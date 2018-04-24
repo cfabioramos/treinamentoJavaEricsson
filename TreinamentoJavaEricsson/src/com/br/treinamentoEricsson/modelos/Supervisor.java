@@ -13,12 +13,6 @@ public class Supervisor extends Funcionario {
 	}
 
 	@Override
-	public void adicionarConta(ContaCorrente conta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public String retornaIdentificador() {
 		// TODO Auto-generated method stub
 		return null;

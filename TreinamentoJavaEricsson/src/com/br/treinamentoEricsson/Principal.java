@@ -1,33 +1,26 @@
 package com.br.treinamentoEricsson;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-import com.br.treinamentoEricsson.controller.LoginController;
-import com.br.treinamentoEricsson.exceptions.LoginException;
-import com.br.treinamentoEricsson.modelos.Gerente;
+import com.br.treinamentoEricsson.modelos.Cliente;
+import com.br.treinamentoEricsson.modelos.ContaCorrente;
 
 public class Principal {
 	
 	public static void main(String[] args) throws IOException {
 		
-		Gerente vartuli = new Gerente("Vartuli", "Rua Bela Vista", "12345", 
-				"vartuli@ericsson.com.br", 12.0, "abc");
+		Cliente cliente1 = new Cliente("Paulo Roberto", "Alameda Martins, 308", new ContaCorrente("2882", "5224", 10000.00));
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Login: ");
-		String login = br.readLine();
-		System.out.println("Senha: ");
-		String senha = br.readLine();
+		ContaCorrente c1 = new ContaCorrente("2556", "3321 4", 2000.00);
 		
-		LoginController controller = new LoginController();
-		try {
-			controller.login(vartuli, login, senha);
-			System.out.println("Usuário autenticado com sucesso.");
-		} catch (LoginException e) {
-			System.out.println(e.getMessage());
-		}
+		cliente1.adicionarConta(c1);
 		
+		cliente1.getContas().add(new ContaCorrente("2556", "3321 4", 2000.00));
+		
+//		System.out.println(cliente1.getContas().size());
+//			
+//		cliente1.removerConta(c1);
+//		
+//		System.out.println(cliente1.getContas().size());
 	}
 }

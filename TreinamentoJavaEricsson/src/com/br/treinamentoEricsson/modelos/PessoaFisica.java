@@ -19,13 +19,8 @@ public class PessoaFisica extends Pessoa {
 
 	@Override
 	public String retornaIdentificador() {
-		return this.cpf;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Override
-	public void adicionarConta(ContaCorrente conta) {
-		//comportamento específico para contas PF
-		super.contas.add(conta);
-	}
-	
 }

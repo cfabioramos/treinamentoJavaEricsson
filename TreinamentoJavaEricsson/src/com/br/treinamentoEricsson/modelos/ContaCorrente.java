@@ -12,12 +12,10 @@ public class ContaCorrente implements Auditavel {
 
 	public static final double VALOR_INICIAL = 100.0;
 
-	public ContaCorrente(String agencia, String numero, double valor, Pessoa cliente) {
+	public ContaCorrente(String agencia, String numero, double valor) {
 		super();
 		this.agencia = agencia;
 		this.numero = numero;
-		this.cliente = cliente;
-		cliente.adicionarConta(this);
 
 		if (valor < ContaCorrente.VALOR_INICIAL) {
 			throw new RuntimeException(

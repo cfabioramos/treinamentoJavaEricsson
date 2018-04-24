@@ -19,20 +19,8 @@ public class PessoaJuridica extends Pessoa implements Auditavel{
 		this.cnpj = cnpj;
 	}
 
-	@Override
 	public String retornaIdentificador() {
 		return this.cnpj;
-	}
-	
-	@Override
-	protected void notificarAlteracao() {
-		System.out.println("Faz a notificação da pessoa juridica...");
-	}
-
-	@Override
-	public void adicionarConta(ContaCorrente conta) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
