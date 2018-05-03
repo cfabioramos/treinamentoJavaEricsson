@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Autor implements Comparator<Autor> {
+public class Autor implements Comparable<Autor> {
 
 	private String nome;
 	private LocalDate dataNascimento;
@@ -35,8 +35,8 @@ public class Autor implements Comparator<Autor> {
 	}
 
 	@Override
-	public int compareTo(Autor o) {
-		return this.getNome().compareTo(o.getNome());
+	public int compareTo(Autor outroAutor) {
+		return this.nome.compareTo(outroAutor.getNome());
 	}
 	
 }

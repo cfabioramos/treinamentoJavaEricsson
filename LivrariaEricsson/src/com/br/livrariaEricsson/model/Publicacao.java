@@ -3,6 +3,7 @@ package com.br.livrariaEricsson.model;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import com.br.livrariaEricsson.util.Categoria;
 
@@ -17,7 +18,8 @@ public class Publicacao {
 	
 	Publicacao(String isbn, String nome, 
 			Integer ano, String editora, 
-			Categoria categoria, LinkedHashSet<Autor> autores) 
+			Categoria categoria, 
+			LinkedHashSet<Autor> autores) 
 	{
 		this.isbn = isbn;
 		this.nome = nome;
@@ -27,11 +29,13 @@ public class Publicacao {
 		this.autores = autores;
 	}
 	
-	public Set<Autor> getAutoresOrdenadosPorNome() {
-		
-		Collections.sort(autores);
-		
+	public Set<Autor> getAutores() {
 		return autores;
+	}
+	
+	public Set<Autor> getAutoresOrdenadosPorNome() {
+		TreeSet<Autor> autoresOrdenados = new TreeSet<>(this.autores);
+		return autoresOrdenados;
 	}
 
 	@Override
