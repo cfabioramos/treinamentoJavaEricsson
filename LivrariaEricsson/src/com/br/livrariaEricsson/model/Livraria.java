@@ -55,12 +55,14 @@ public class Livraria {
 	}
 	
 	public static void main(String[] args) {
-		Autor autor1 = new Autor("Zé", LocalDate.now());
-		Autor autor2 = new Autor("Jão", LocalDate.now());
-		Autor autor3 = new Autor("Maria", LocalDate.now());
+		Autor autor1 = new Autor("Zé", LocalDate.now().minusYears(9));
+		Autor autor12 = new Autor("Zé", LocalDate.now().minusYears(9));
+		Autor autor2 = new Autor("Jão", LocalDate.now().minusYears(10));
+		Autor autor3 = new Autor("Maria", LocalDate.now().minusYears(11));
 		
 		LinkedHashSet<Autor> autores = new LinkedHashSet<>();
 		autores.add(autor1);
+		autores.add(autor12);
 		autores.add(autor2);
 		autores.add(autor3);
 		
@@ -71,7 +73,7 @@ public class Livraria {
 		
 		System.out.println(artigo1.getAutores());
 		
-		System.out.println(artigo1.getAutoresOrdenadosPorNome());
+		System.out.println(artigo1.getAutoresOrdenadosPorNomeEDataNascimento());
 	}
 	
 }

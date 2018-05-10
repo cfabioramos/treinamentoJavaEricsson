@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import model.Person.Sex;
 
@@ -20,20 +22,38 @@ public class Main {
 		persons.add(pessoa2);
 		persons.add(pessoa3);
 		persons.add(pessoa4);
-
-		Main.printPersons(persons, 
-				p -> p.getGender() == Person.Sex.MALE
-							&& p.getAge() >= 18
-					        && p.getAge() <= 25 );
+//
+//		Main.processPerson(persons, 
+//				p -> p.getGender() == Person.Sex.MALE
+//							&& p.getAge() >= 18,
+//							p -> p.printPerson());
+//		
+//		Main.processPerson(persons, 
+//				p -> p.getGender() == Person.Sex.MALE
+//							&& p.getAge() >= 18,
+//							p -> {
+//								System.out.println(p.getAge());
+//							});
+//		
+		Main.printPersonsForAlistamento(persons);
 
 	}
 
-	public static void printPersons(List<Person> roster, CheckPerson tester) {
+	public static void processPerson(List<Person> roster, 
+			Predicate<Person> tester,
+		    Consumer<Person> block) {
+		
 		for (Person p : roster) {
 			if (tester.test(p)) {
-				p.printPerson();
+				block.accept(p);
 			}
 		}
+	}
+	
+	public static void printPersonsForAlistamento(List<Person> roster) {
+		roster.stream().filter(p -> p.getGender() == Person.Sex.MALE
+							&& p.getAge() >= 18).forEach(p -> p.printPerson());
+		
 	}
 
 }

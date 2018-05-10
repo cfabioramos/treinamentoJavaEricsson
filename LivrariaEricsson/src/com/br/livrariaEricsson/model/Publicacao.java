@@ -33,7 +33,29 @@ public class Publicacao {
 	}
 	
 	public Set<Autor> getAutoresOrdenadosPorNome() {
-		TreeSet<Autor> autoresOrdenados = new TreeSet<>(this.autores);
+		TreeSet<Autor> autoresOrdenados = new TreeSet<>(
+				(a1, a2) ->  a1.getNome().compareTo(a2.getNome()));
+		autoresOrdenados.addAll(this.autores);
+		return autoresOrdenados;
+	}
+	
+	public Set<Autor> getAutoresOrdenadosPorDataNascimento() {
+		TreeSet<Autor> autoresOrdenados = new TreeSet<>(
+				(a1, a2) -> a1.getDataNascimento().compareTo(a2.getDataNascimento()));
+		autoresOrdenados.addAll(this.autores);
+		return autoresOrdenados;
+	}
+	
+	public Set<Autor> getAutoresOrdenadosPorNomeEDataNascimento() {
+		TreeSet<Autor> autoresOrdenados = new TreeSet<>(
+				(a1, a2) -> {
+					int retorno = a1.getNome().compareTo(a2.getNome());
+					if (retorno == 0) {
+						return a1.getDataNascimento().compareTo(a2.getDataNascimento()); 
+					}
+					return retorno;
+				});
+		autoresOrdenados.addAll(this.autores);
 		return autoresOrdenados;
 	}
 
