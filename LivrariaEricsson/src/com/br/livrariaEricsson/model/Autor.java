@@ -61,7 +61,4 @@ public class Autor extends Object{
 			return false;
 		return true;
 	}
-	
-	
-	
 }
